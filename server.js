@@ -6,6 +6,7 @@ var cors = require('cors');
 // require and use "multer"...
 
 var app = express();
+var port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -18,6 +19,6 @@ app.get('/hello', function(req, res){
   res.json({greetings: "Hello, API"});
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Node.js listening ...');
+let listener = app.listen(process.env.PORT || 3000, function () {
+  console.log('Node.js listening at http://localhost:' + listener.address().port);
 });
